@@ -15,12 +15,15 @@ import {
   Row
 } from 'reactstrap'
 
+import 'assets/css/Login.css'
+
 
 const Login = () => {
+ 
   return (
-    <div className="c-app c-default-layout flex-row align-items-center">
-      <Container>
-        <Row className="justify-content-center">
+    <>
+      <Container >
+        <Row className="mt-lg-5 justify-content-center login_row ">
           <Col md="8">
             <CardGroup>
               <Card className="p-4">
@@ -29,18 +32,22 @@ const Login = () => {
                     <h1>Login</h1>
                     <p className="text-muted">Sign In to your account</p>
                     <InputGroup className="mb-3">
-                      <InputGroupAddon>
-                        <InputGroupText>
-                         
-                        </InputGroupText>
+                      <InputGroupAddon addonType="prepend">
+                      <InputGroupText>
+                      <i class="fas fa-user login_icon"></i>
+               
+                      </InputGroupText>
+                  
+                       
                       </InputGroupAddon>
                       <Input type="text" placeholder="Username" autoComplete="username" />
                     </InputGroup>
                     <InputGroup className="mb-4">
-                      <InputGroupAddon>
-                        <InputGroupText>
-                          
-                        </InputGroupText>
+                      <InputGroupAddon addonType="prepend">
+                      <InputGroupText>
+                      
+                      <i class="fas fa-lock login_icon" ></i>
+                      </InputGroupText>
                       </InputGroupAddon>
                       <Input type="password" placeholder="Password" autoComplete="current-password" />
                     </InputGroup>
@@ -55,7 +62,7 @@ const Login = () => {
                   </Form>
                 </CardBody>
               </Card>
-              <Card className="text-white bg-primary py-5 d-md-down-none" style={{ width: '44%' }}>
+              <Card className="text-white bg-primary py-5 d-md-down-none" >
                 <CardBody className="text-center">
                   <div>
                     <h2>Sign up</h2>
@@ -71,7 +78,7 @@ const Login = () => {
           </Col>
         </Row>
       </Container>
-    </div>
+    </>
   )
 }
 
