@@ -1,7 +1,7 @@
 import React from "react";
 
 import classNames from "classnames";
-
+import {Link} from 'react-router-dom';
 // reactstrap components
 import {
   Button,
@@ -81,6 +81,7 @@ function AdminNavbar(props) {
           </NavbarToggler>
           <Collapse navbar isOpen={collapseOpen}>
             <Nav className="ml-auto" navbar>
+
               <InputGroup className="search-bar">
                 <Button color="link" onClick={toggleModalSearch}>
                   <i className="tim-icons icon-zoom-split" />
@@ -144,14 +145,16 @@ function AdminNavbar(props) {
                 </DropdownToggle>
                 <DropdownMenu className="dropdown-navbar" right tag="ul">
                   <NavLink tag="li">
-                    <DropdownItem className="nav-item">Profile</DropdownItem>
+                   <Link to="/admin/user-profile">  <DropdownItem className="nav-item">Profile</DropdownItem> </Link>
                   </NavLink>
                   <NavLink tag="li">
                     <DropdownItem className="nav-item">Settings</DropdownItem>
                   </NavLink>
                   <DropdownItem divider tag="li" />
                   <NavLink tag="li">
+                    <Link to="/login">
                     <DropdownItem className="nav-item">Log out</DropdownItem>
+                    </Link>
                   </NavLink>
                 </DropdownMenu>
               </UncontrolledDropdown>

@@ -3,7 +3,6 @@ import React from "react";
 import { Route, Switch, Redirect, useLocation } from "react-router-dom";
 // core components
 import AdminNavbar from "components/Navbars/AdminNavbar.js";
-import Footer from "components/Footer/Footer.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
 import FixedPlugin from "components/FixedPlugin/FixedPlugin.js";
 
@@ -72,12 +71,9 @@ function Admin() {
               />
               <Switch>
                 {getRoutes(routes)}
-                <Redirect from="*" to="/admin/dashboard" />
+                <Redirect from="*" to="/404" />
               </Switch>
-              {
-                // we don't want the Footer to be rendered on map page
-                location.pathname === "/admin/maps" ? null : <Footer fluid />
-              }
+              
               
             </div>
           </div>

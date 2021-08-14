@@ -15,7 +15,7 @@ import {
   Row
 } from 'reactstrap'
 
-import 'assets/css/Login.css'
+import 'assets/css/index.css'
 
 
 const Login = () => {
@@ -23,10 +23,10 @@ const Login = () => {
   return (
     <>
       <Container >
-        <Row className="mt-lg-5 justify-content-center login_row ">
+        <Row className="mt-lg-5 justify-content-center">
           <Col md="8">
             <CardGroup>
-              <Card className="p-4">
+              <Card className="p-4 mt-lg-xl">
                 <CardBody>
                   <Form>
                     <h1>Login</h1>
@@ -53,7 +53,9 @@ const Login = () => {
                     </InputGroup>
                     <Row>
                       <Col xs="6">
-                        <Button color="primary" className="px-4">Login</Button>
+                       <Link to="/admin/dashboard">
+                       <Button color="primary" className="px-4">Login</Button>
+                       </Link>
                       </Col>
                       <Col xs="6" className="text-right">
                         <Button color="link" className="px-0">Forgot password?</Button>
@@ -62,7 +64,7 @@ const Login = () => {
                   </Form>
                 </CardBody>
               </Card>
-              <Card className="text-white bg-primary py-5 d-md-down-none" >
+              <Card className="text-white bg-primary py-5 d-md-down-none mt-lg-xl" >
                 <CardBody className="text-center">
                   <div>
                     <h2>Sign up</h2>

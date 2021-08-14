@@ -1,0 +1,20 @@
+.register_row{
+    margin-top: 10% !important; 
+}
+.login_icon{
+    margin-right: 100%;  
+}
+.card label{
+    color: #fff !important;;
+}
+::-webkit-file-upload-button{
+    display: inline-block;
+  background-color: yellow;
+  border: 1px solid yellow;
+  height:30px;
+  outline: none;
+  box-shadow: none;
+
+
+} 
+
