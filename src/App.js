@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Switch,Redirect} from "react-router-dom";
+import { BrowserRouter, Route, Switch} from "react-router-dom";
 
 import AdminLayout from "layouts/Admin/Admin.js";
  
@@ -23,8 +23,12 @@ const loading = (
   )
  
 const App = () => {
- 
+  const isLoggedIn=true;
     return (
+    
+
+
+
         <>
          <ThemeContextWrapper>
     <BackgroundColorWrapper>
@@ -32,11 +36,15 @@ const App = () => {
       <React.Suspense fallback={loading}>
         <Switch>
           <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
-          <Redirect from="/admin" to="/admin/dashboard" /> 
-          
+          { 
+            isLoggedIn===false?
+            <Route path="/" render={(props) => <AdminLayout {...props} />} />
+           :
+            <Route exact path="/" name="Login Page" component={Login} />
+          }
+          {/* <Redirect from="/admin" to="/admin/dashboard" />  */}
               <Route exact path="/login" name="Login Page" component={Login} />
               <Route exact path="/register" name="Register Page" component={Register} />
-              
               <Route exact path="/404" name="Page 404" component={Page404} />
         </Switch>
         </React.Suspense>
@@ -45,7 +53,7 @@ const App = () => {
   </ThemeContextWrapper>,   
         </>
     )
-}
+} 
 
 export default App
 

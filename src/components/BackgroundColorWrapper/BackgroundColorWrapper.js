@@ -13,8 +13,7 @@ export default function BackgroundColorWrapper(props) {
 
   return (
     <BackgroundColorContext.Provider
-      value={{ color: color, changeColor: changeColor }}
-    >
+      value={{ color: color, changeColor: changeColor }}>
       {props.children}
     </BackgroundColorContext.Provider>
   );

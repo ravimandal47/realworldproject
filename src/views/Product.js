@@ -7,12 +7,14 @@ import {
   CardTitle,
   Table,
   Row,
-  Col,Button
+  Col,Button, Form,FormGroup, Input, CardFooter
 } from "reactstrap";
 
 function Tables() {
+
   return (
     <>
+  
       <div className="content">
         <Row>
           <Col md="12">
@@ -54,16 +56,80 @@ function Tables() {
                       <td>Netherlands</td>
                       <td>Baileux</td>
                       <td >Sold To Customer</td>
-                    </tr>
-                    
+                    </tr>  
                   </tbody>
                 </Table>
               </CardBody>
             </Card>
           </Col>
+        </Row>:
+        <Row>
+          <Col md="12">
+            <Card>
+              <CardHeader>
+                <h3 className="title">All Product Details</h3>
+              </CardHeader>
+              <CardBody>
+                <Form>
+                  <Row>
+                    <Col  md="12">
+                      <FormGroup>
+                        <label>Manufacturer</label>
+                        <Input type="select" name="select" id="exampleSelect">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </Input>
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                  <Row>
+                  <Col  md="12">
+                      <FormGroup>
+                        <label>Serial Number</label>
+                        <Input
+                          placeholder="Serial Number"
+                          type="text"
+                        />
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                  <Row>
+                  <Col  md="12">
+                      <FormGroup>
+                        <label>Status</label>
+                        <Input type="select" name="select" id="exampleSelect">
+          <option>Ready To Ship</option>
+          <option>Shipped To Retailer</option>
+          <option>Sold To Customer</option>
+        
+        </Input>
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                 
+                 
+                 
+                </Form>
+              </CardBody>
+              <CardFooter className="mx-auto">
+              <Row>
+                <Col>
+                <Button color="primary" type="submit" block>
+                  Save
+                </Button>
+                </Col>
+
+              </Row> 
+              </CardFooter>
+            </Card>
+          </Col>
           
         </Row>
       </div>
+    
     </>
   );
 }

@@ -2,12 +2,11 @@
 import React from "react";
 import { Route, Switch, Redirect, useLocation } from "react-router-dom";
 // core components
+import Page404 from "components/page404/Page404";
 import AdminNavbar from "components/Navbars/AdminNavbar.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
 import FixedPlugin from "components/FixedPlugin/FixedPlugin.js";
-
 import routes from "routes.js";
-
 import logo from "assets/img/react-logo.png";
 import { BackgroundColorContext } from "contexts/BackgroundColorContext";
 
@@ -37,11 +36,15 @@ function Admin() {
           />
         );
       } else {
-        return null;
+        return <Route
+        path="/404"
+        component={Page404}
+      />
+        ;
       }
     });
   };
-  const getBrandText = (path) => {
+  const getBrandText = () => {
     for (let i = 0; i < routes.length; i++) {
       if (location.pathname.indexOf(routes[i].layout + routes[i].path) !== -1) {
         return routes[i].name;

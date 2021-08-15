@@ -4,6 +4,7 @@ import UserProfile from "views/UserProfile.js";
 import AddProduct  from "views/AddProduct";
 import Setting from "views/Setting";
 import AddCategory from "views/AddCategory";
+
 var routes = [
   {
     path: "/dashboard",
@@ -19,7 +20,6 @@ var routes = [
     component: UserProfile,
     layout: "/admin",
   },
- 
   {
     path: "/product",
     name: "Product",
