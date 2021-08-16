@@ -1,0 +1,17 @@
+version: "3.9"
+    
+services:
+  db:
+    image: mysql:8.0.25
+    ports:
+        - "3306:3306"
+    volumes:
+      - scanit_mysql_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 'scanit@123-dev'
+      MYSQL_DATABASE: scanit-db
+      MYSQL_USER: scanit
+      MYSQL_PASSWORD: 'scanit@123-dev'
+volumes:
+  scanit_mysql_data: {}
