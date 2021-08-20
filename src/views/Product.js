@@ -16,6 +16,7 @@ function Tables() {
     <>
   
       <div className="content">
+       {/* manufacturer product details */}
         <Row>
           <Col md="12">
             <Card>
@@ -62,7 +63,9 @@ function Tables() {
               </CardBody>
             </Card>
           </Col>
-        </Row>:
+        </Row>
+
+         {/* retailer product details */}
         <Row>
           <Col md="12">
             <Card>

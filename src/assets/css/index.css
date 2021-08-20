@@ -1,12 +1,20 @@
 .register_row{
     margin-top: 10% !important; 
 }
-.login_icon{
+.all_icons{
     margin-right: 100%;  
 }
 .card label{
     color: #fff !important;;
 }
+.h5_already_account{
+    margin-top: 0.7rem !important;
+}
+
+.page_404_center{
+    margin-top: 240px;
+}
+
 ::-webkit-file-upload-button{
   display: inline-block;
   background-color: yellow;
@@ -15,4 +23,5 @@
   outline: none;
   box-shadow: none; 
 } 
+
 

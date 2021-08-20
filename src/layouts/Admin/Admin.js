@@ -50,7 +50,7 @@ function Admin() {
         return routes[i].name;
       }
     }
-    return "Brand";
+    return "Scan It";
   };
   return (
     <BackgroundColorContext.Consumer>
@@ -60,7 +60,6 @@ function Admin() {
             <Sidebar
               routes={routes}
               logo={{
-                outterLink: "/",
                 text: "Scan It",
                 imgSrc: logo,
               }}

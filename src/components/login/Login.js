@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 import {
   Button,
   Card,
@@ -12,17 +12,15 @@ import {
   InputGroup,
   InputGroupAddon,
   InputGroupText,
-  Row
-} from 'reactstrap'
+  Row,
+} from "reactstrap";
 
-import 'assets/css/index.css'
-
+import "assets/css/index.css";
 
 const Login = () => {
- 
   return (
     <>
-      <Container >
+      <Container>
         <Row className="mt-lg-5 justify-content-center">
           <Col md="8">
             <CardGroup>
@@ -33,45 +31,64 @@ const Login = () => {
                     <p className="text-muted">Sign In to your account</p>
                     <InputGroup className="mb-3">
                       <InputGroupAddon addonType="prepend">
-                      <InputGroupText>
-                      <i class="fas fa-user login_icon"></i>
-               
-                      </InputGroupText>
-                  
-                       
+                        <InputGroupText>
+                          <i class="fas fa-user all_icons"></i>
+                        </InputGroupText>
                       </InputGroupAddon>
-                      <Input type="text" placeholder="Username" autoComplete="username" />
+                      <Input
+                        type="text"
+                        placeholder="Username"
+                        autoComplete="username"
+                      />
                     </InputGroup>
+
                     <InputGroup className="mb-4">
                       <InputGroupAddon addonType="prepend">
-                      <InputGroupText>
-                      
-                      <i class="fas fa-lock login_icon" ></i>
-                      </InputGroupText>
+                        <InputGroupText>
+                          <i class="fas fa-lock all_icons"></i>
+                        </InputGroupText>
                       </InputGroupAddon>
-                      <Input type="password" placeholder="Password" autoComplete="current-password" />
+                      <Input
+                        type="password"
+                        placeholder="Password"
+                        autoComplete="current-password"
+                      />
                     </InputGroup>
                     <Row>
                       <Col xs="6">
-                       <Link to="/admin/dashboard">
-                       <Button color="primary" className="px-4">Login</Button>
-                       </Link>
+                        <Link to="/admin/dashboard">
+                          <Button color="primary" className="px-4">
+                            Login
+                          </Button>
+                        </Link>
                       </Col>
                       <Col xs="6" className="text-right">
-                        <Button color="link" className="px-0">Forgot password?</Button>
+                        <Button color="link" className="px-0">
+                          Forgot password?
+                        </Button>
                       </Col>
                     </Row>
                   </Form>
                 </CardBody>
               </Card>
-              <Card className="text-white bg-primary py-5 d-md-down-none mt-lg-xl" >
+              <Card className="text-white bg-primary py-5 d-md-down-none mt-lg-xl">
                 <CardBody className="text-center">
                   <div>
                     <h2>Sign up</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                      labore et dolore magna aliqua.</p>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua.
+                    </p>
                     <Link to="/register">
-                      <Button color="primary" className="mt-3" active tabIndex={-1}>Register Now!</Button>
+                      <Button
+                        color="primary"
+                        className="mt-3"
+                        active
+                        tabIndex={-1}
+                      >
+                        Register Now!
+                      </Button>
                     </Link>
                   </div>
                 </CardBody>
@@ -81,7 +98,7 @@ const Login = () => {
         </Row>
       </Container>
     </>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

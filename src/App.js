@@ -13,28 +13,18 @@ import ThemeContextWrapper from "./components/ThemeWrapper/ThemeWrapper";
 import BackgroundColorWrapper from "./components/BackgroundColorWrapper/BackgroundColorWrapper";
  
 // Pages
-const Login = React.lazy(() => import('./components/login/Login'));
-const Register = React.lazy(() => import('./components/register/Register'));
-const Page404 = React.lazy(() => import('./components/page404/Page404'));
-const loading = (
-    <div className="pt-3 text-center">
-      <div className="sk-spinner sk-spinner-pulse"></div>
-    </div>
-  )
+import Login from "./components/login/Login";
+import Register from "./components/register/Register";
+import Page404 from "./components/page404/Page404";
  
 const App = () => {
   const isLoggedIn=true;
     return (
-    
-
-
-
-        <>
+            <>
          <ThemeContextWrapper>
     <BackgroundColorWrapper>
       <BrowserRouter> 
-      <React.Suspense fallback={loading}>
-        <Switch>
+          <Switch>
           <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
           { 
             isLoggedIn===false?
@@ -47,7 +37,6 @@ const App = () => {
               <Route exact path="/register" name="Register Page" component={Register} />
               <Route exact path="/404" name="Page 404" component={Page404} />
         </Switch>
-        </React.Suspense>
       </BrowserRouter>
     </BackgroundColorWrapper>
   </ThemeContextWrapper>,   

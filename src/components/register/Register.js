@@ -10,6 +10,8 @@ import {
   Input,
   InputGroup,
   Row,
+  InputGroupAddon,
+  InputGroupText,
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import "assets/css/index.css";
@@ -25,6 +27,11 @@ const Register = () => {
                   <h1>Register</h1>
                   <p className="text-muted">Create your account</p>
                   <InputGroup className="mb-3">
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>
+                        <i class="fas fa-user all_icons"></i>
+                      </InputGroupText>
+                    </InputGroupAddon>
                     <Input
                       type="text"
                       placeholder="Username"
@@ -32,13 +39,23 @@ const Register = () => {
                     />
                   </InputGroup>
                   <InputGroup className="mb-3">
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>
+                        <i class="fas fa-envelope all_icons"></i>
+                      </InputGroupText>
+                    </InputGroupAddon>
                     <Input
                       type="text"
                       placeholder="Email"
-                      autoComplete="email" 
+                      autoComplete="email"
                     />
                   </InputGroup>
                   <InputGroup className="mb-3">
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>
+                        <i class="fas fa-lock all_icons"></i>
+                      </InputGroupText>
+                    </InputGroupAddon>
                     <Input
                       type="password"
                       placeholder="Password"
@@ -46,25 +63,30 @@ const Register = () => {
                     />
                   </InputGroup>
                   <InputGroup className="mb-4">
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>
+                        <i class="fas fa-lock all_icons"></i>
+                      </InputGroupText>
+                    </InputGroupAddon>
                     <Input
                       type="password"
                       placeholder="Repeat password"
                       autoComplete="new-password"
                     />
                   </InputGroup>
-                  <Link to='/login'>
-                  <Button color="primary" block>
-                    Create Account
-                  </Button>
+                  <Link to="/login">
+                    <Button color="primary" block>
+                      Create Account
+                    </Button>
                   </Link>
 
                   <Row>
                     <Col xs="8">
-                      <h5 className="mt-2">Already Have an Account?</h5>
+                      <h5 className="h5_already_account">Already Have an Account?</h5>
                     </Col>
                     <Col xs="4">
                       <Link to="/login">
-                        <Button color="link">Login Here</Button>
+                        <Button color="link" className="px-0">Login Here</Button>
                       </Link>
                     </Col>
                   </Row>
@@ -73,12 +95,12 @@ const Register = () => {
               <CardFooter className="p-4">
                 <Row>
                   <Col xs="12" sm="6">
-                    <Button className="btn-facebook mb-1" color="info" block>
+                    <Button color="info" block>
                       <span>facebook</span>
                     </Button>
                   </Col>
                   <Col xs="12" sm="6">
-                    <Button className="btn-twitter mb-1" color="info" block>
+                    <Button color="info" block>
                       <span>twitter</span>
                     </Button>
                   </Col>
