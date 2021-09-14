@@ -8,6 +8,7 @@ const crypto = require('crypto');
 
 const secret_id = process.env.secret || "realworldproject";
 
+const saltRounds = 10;
 // IP and port
 const IP = '127.0.0.1';
 const port = process.env.PORT || 3010;
@@ -70,7 +71,7 @@ app.post('/signUp', (req, res) => {
         if (results.length) {
             return res.status(400).send('Email already exists!');
         }
-        connection.query('INSERT INTO USER VALUES (?,?,?,?)', [name, email, hashedPassword, phone], (error, results) => {
+        connection.query('INSERT INTO USER (`Name`, `Email`, `Password`, `Phone`) VALUES (?,?,?,?)', [name, email, hashedPassword, phone], (error, results) => {
             if (error) {
                 callback(error);
                 return res.status(400);
@@ -78,6 +79,7 @@ app.post('/signUp', (req, res) => {
             res.status(200).send('Signup successful!');
             // Adding user to the Blockchain
             hashedEmail = hashMD5(email);
+            return;
             let ok = createCustomer(hashedEmail, name, phone);
             if (ok) {
                 console.log(`User ${hashedEmail} successfully added to Blockchain!\n`);
@@ -124,8 +126,10 @@ app.post('/login', (req, res) => {
                 return res.status(400).send('Login failed.');
             });
         }
-        console.log('Email does not exist!\n');
-        return res.status(400).send('Email does not exist!');
+        else {
+            console.log('Email does not exist!\n');
+            return res.status(400).send('Email does not exist!');
+        }
     });
 });
 
@@ -154,12 +158,14 @@ app.post('/retailerSignup', (req, res) => {
         if (results.length) {
             return res.status(400).send('Email already exists!');
         }
-        connection.query('INSERT INTO RETAILER VALUES (?,?,?,?)', [retailerName, retailerEmail, retailerLocation,
+        connection.query('INSERT INTO RETAILER (`retailerName`, `retailerEmail`, `retailerLocation`, `retailerHashedPassword`) VALUES (?,?,?,?)', [retailerName, retailerEmail, retailerLocation,
                                                                     retailerHashedPassword], (error, results) => {
             if (error) {
                 callback(error);
                 return res.status(400).send('Some SQL Error');
             }
+
+            return;
             // Adding retailer to Blockchain
             let ok = createRetailer(retailerHashedEmail, retailerName, retailerLocation);
             if (ok) {
@@ -213,7 +219,7 @@ app.post('/retailerLogin', (req, res) => {
  * Receive:     JSON object of retailer details if successful, 400 otherwise
  */
 app.get('/retailerDetails', (req, res) => {
-    connection.query('Select * from RETAILER', (error, results) => {
+    connection.query('Select Id, retailerName, retailerEmail, retailerLocation from RETAILER', (error, results) => {
         if(error) {
             callback(error);
             return res.status(400).send('ERROR');
@@ -236,6 +242,7 @@ app.post('/addRetailerToCode', (req, res) => {
     let retailerEmail = req.body.email;
     let hashedEmail = hashMD5(retailerEmail);
     console.log(`retailerEmail: ${retailerEmail}, hashed email: ${hashedEmail} \n`);
+    return;
     let ok = contractInstance.addRetailerToCode(code, hashedEmail);
     if(!ok) {
         return res.status(400).send('Error');
@@ -561,3 +568,7 @@ app.get('/getCustomerDetails', (req, res) => {
     };
     res.status(200).send(JSON.parse(JSON.stringify(customerDetailsObj)));
 });
+
+function callback(error){
+    console.log(error);
+}
