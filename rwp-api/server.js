@@ -257,19 +257,20 @@ app.get('/getManufactrer', (req, res) => {
 
 app.post('/addProducts', (req, res) => {
 
-    let productName = req.body.productName;
-    let manufactrerId = req.body.manufactrerId;
-    let retailerId = req.body.retailerId;
-    let serialCode = req.body.serialCode;
-    let price = req.body.price;
+    let productName = req.body.product.productName;
+    let manufactrerId = 1;
+    let retailerId = 1;
+    let serialCode = req.body.product.serialCode;
+    let price = req.body.product.price;
     
-    connection.query('INSERT INTO `scanit-db`.`RETAILERPRODUCTS`( `Name`, `SerialCode`, `ManufactrerId`, `RetailerId`, `Price`) VALUES (?, ?, ?, ?, ?);', [productName, serialCode, manufactrerId, retailerId], price, (error, results) => {
-        if(error) {
+    connection.query('INSERT INTO `scanit-db`.`RETAILERPRODUCTS`( `Name`, `SerialCode`, `ManufactrerId`, `RetailerId`, `Price`) VALUES (?, ?, ?, ?, ?);', [productName, serialCode, manufactrerId, retailerId, price], (error, results) => {
+        if (error) {
             callback(error);
             return res.status(400).send('ERROR');
         }
-
-        return res.status(200).send(JSON.parse(JSON.stringify(results)));
+        QRCode.toDataURL(manufactrerId + serialCode + price, function (err, url) {
+            return res.status(200).send({'qrcode' : url});
+        });
     });
 
     

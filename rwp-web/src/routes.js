@@ -16,13 +16,6 @@ var routes = [
     layout: "/admin",
     name: "Add Product",
     icon: "tim-icons icon-puzzle-10",
-  },
-  {
-    path: "/addcategory",
-    component: AddCategory,
-    layout: "/admin",
-    name: "Add Manufracture",
-    icon: "tim-icons icon-puzzle-10",
-  },
+  }
 ];
 export default routes;
