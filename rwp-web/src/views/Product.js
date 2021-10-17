@@ -1,5 +1,5 @@
-import React from "react";
-import {Link} from 'react-router-dom' 
+import React, { useEffect, useState } from "react";
+import { Link } from 'react-router-dom'
 import {
   Card,
   CardHeader,
@@ -7,65 +7,87 @@ import {
   CardTitle,
   Table,
   Row,
-  Col,Button, Form,FormGroup, Input, CardFooter
+  Col, Button, Form, FormGroup, Input, CardFooter
 } from "reactstrap";
 
 function Tables() {
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [items, setItems] = useState([]);
 
-  return (
-    <>
-  
-      <div className="content">
-       {/* manufacturer product details */}
-        <Row>
-          <Col md="12">
-            <Card>
-            <CardHeader>
-              <Link to="/admin/addproduct">
-              <Button color="info" block>Add Product</Button>
-              </Link>
-              </CardHeader>
-              <CardHeader>
-                <CardTitle tag="h4">All Product Details</CardTitle>
-              </CardHeader>
-              
-              <CardBody>
-                <Table className="tablesorter" responsive>
-                  <thead className="text-primary">
-                    <tr>
-                      <th>Name</th>
-                      <th>Category</th>
-                      <th>Price</th>
-                      <th>Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Dakota Rice</td>
-                      <td>Niger</td>
-                      <td>Oud-Turnhout</td>
-                      <td>Ready To Ship</td>
-                    </tr>
-                    <tr>
-                      <td>Minerva Hooper</td>
-                      <td>Curaçao</td>
-                      <td>Sinaai-Waas</td>
-                      <td >Shipped To Retailer</td>
-                    </tr>
-                    <tr>
-                      <td>Sage Rodriguez</td>
-                      <td>Netherlands</td>
-                      <td>Baileux</td>
-                      <td >Sold To Customer</td>
-                    </tr>  
-                  </tbody>
-                </Table>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
+  // Note: the empty deps array [] means
+  // this useEffect will run once
+  // similar to componentDidMount()
+  useEffect(() => {
+    fetch("http://localhost:3010/getProducts")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setItems(result);
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+  }, [])
 
-         {/* retailer product details */}
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  } else if (!isLoaded) {
+    return <div>Loading...</div>;
+  } else {
+    return (
+      <>
+
+        <div className="content">
+          {/* manufacturer product details */}
+          <Row>
+            <Col md="12">
+              <Card>
+                <CardHeader>
+                  <Link to="/admin/addproduct">
+                    <Button color="info" block>Add Product</Button>
+                  </Link>
+                </CardHeader>
+                <CardHeader>
+                  <CardTitle tag="h4">All Product Details</CardTitle>
+                </CardHeader>
+
+                <CardBody>
+                  <Table className="tablesorter" responsive>
+                    <thead className="text-primary">
+                      <tr>
+                        <th>Id</th>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Manufacturer Name</th>
+                        <th>Serial Code</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      
+                      {items.map(item => (
+                        <tr key={item.Id}>
+                        <td>{item.Id}</td>
+                        <td>{item.ProductName}</td>
+                        <td>NPR {item.Price}</td>
+                        <td>{item.Name}</td>
+                        <td>{item.SerialCode}</td>
+                      </tr>
+                      ))}
+                    </tbody>
+                  </Table>
+                </CardBody>
+              </Card>
+            </Col>
+          </Row>
+
+          {/* retailer product details
         <Row>
           <Col md="12">
             <Card>
@@ -130,11 +152,12 @@ function Tables() {
             </Card>
           </Col>
           
-        </Row>
-      </div>
-    
-    </>
-  );
+        </Row> */}
+        </div>
+
+      </>
+    );
+  }
 }
 
 export default Tables;
