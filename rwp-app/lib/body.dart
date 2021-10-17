@@ -8,35 +8,71 @@ import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:flutter/foundation.dart';
 
 class Body extends StatelessWidget {
+  const Body({Key? key, required this.code}) : super(key: key);
+
+  final String code;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFFF3D657),
-        leading: IconButton(
-            icon: Icon(Icons.menu), onPressed: () {}, color: Colors.black),
         title: new Text(
-          'Scanner',
+          'Product Details',
           style: TextStyle(color: Colors.black),
         ),
-        actions: [
-          IconButton(
-              icon: Icon(Icons.more_vert),
-              onPressed: () {},
-              color: Colors.black),
-        ],
       ),
-      backgroundColor: Colors.black,
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => Body(),
-            ));
-          },
-          child: Text('qrView'),
-        ),
-      ),
+      backgroundColor: Colors.white,
+      body: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              code,
+              style: TextStyle(
+                fontSize: 16,
+                color: Color(0xFF1C1C1C),
+                height: 2,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            Text(
+              code,
+              style: TextStyle(
+                fontSize: 16,
+                color: Color(0xFF1C1C1C),
+                height: 2,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            Text(
+              code,
+              style: TextStyle(
+                fontSize: 16,
+                color: Color(0xFF1C1C1C),
+                height: 2,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            Text(
+              code,
+              style: TextStyle(
+                fontSize: 16,
+                color: Color(0xFF1C1C1C),
+                height: 2,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            Text(
+              code,
+              style: TextStyle(
+                fontSize: 16,
+                color: Color(0xFF1C1C1C),
+                height: 2,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ]),
     );
   }
 }
