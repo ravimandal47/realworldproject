@@ -61,7 +61,7 @@ class MyApp extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => Body(),
+                      builder: (context) => MyApp(),
                     ));
                   },
                   child: Container(
@@ -101,6 +101,7 @@ class QRViewExample extends StatefulWidget {
 
 class _QRViewExampleState extends State<QRViewExample> {
   Barcode? result;
+  Barcode? lastResult;
   QRViewController? controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
 
@@ -129,11 +130,10 @@ class _QRViewExampleState extends State<QRViewExample> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   if (result != null)
-                    // Text(
-                    //     'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}')
-                    Text('data')
+                    Text(
+                        'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}')
                   else
-                    Text('Scan a code')
+                    Text('Scan a code'),
                 ],
               ),
             ),
@@ -141,6 +141,11 @@ class _QRViewExampleState extends State<QRViewExample> {
         ],
       ),
     );
+  }
+
+  void _navigateToMainPage(String code){
+    Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => Body(code: code)));
   }
 
   Widget _buildQrView(BuildContext context) {
@@ -170,8 +175,14 @@ class _QRViewExampleState extends State<QRViewExample> {
     });
     controller.scannedDataStream.listen((scanData) {
       setState(() {
-        //result = scanData;
+        lastResult = result;
+        result = scanData;
+        if(result?.code != lastResult?.code){
+           lastResult = null;
+           _navigateToMainPage(scanData.code);
+        }
       });
+      
     });
   }
 
