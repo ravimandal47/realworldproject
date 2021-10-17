@@ -92,7 +92,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                           boxShadow: [
                             BoxShadow(
                                 blurRadius: 4,
-                                color: Colors.yellow[200],
+                                color: Colors.yellow.shade200,
                                 offset: Offset(2, 2))
                           ]),
                       child: Text(
