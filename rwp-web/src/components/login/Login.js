@@ -56,7 +56,7 @@ const Login = () => {
                     </InputGroup>
                     <Row>
                       <Col xs="6">
-                        <Link to="/admin/dashboard">
+                        <Link to="/admin/product">
                           <Button color="primary" className="px-4">
                             Login
                           </Button>
@@ -71,14 +71,12 @@ const Login = () => {
                   </Form>
                 </CardBody>
               </Card>
-              <Card className="text-white bg-primary py-5 d-md-down-none mt-lg-xl">
+              <Card className="text-dark bg-primary py-5 d-md-down-none mt-lg-xl">
                 <CardBody className="text-center">
                   <div>
                     <h2>Sign up</h2>
                     <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua.
+                      You can sign up as an retailer in our system and start adding products. 
                     </p>
                     <Link to="/register">
                       <Button
