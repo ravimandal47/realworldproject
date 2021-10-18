@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 // reactstrap components
 import {
@@ -15,107 +15,104 @@ import {
 } from "reactstrap";
 import "assets/css/index.css";
 
-function AddProduct() {
+function AddProduct(props) {
+  const [product, setProduct] = useState({})
+  const [qrCode, setQRCode] = useState('')
+
+  const submit = e => {
+    e.preventDefault()
+    fetch('http://localhost:3010/addProducts', {
+      method: 'POST',
+      body: JSON.stringify({ product }),
+      headers: { 'Content-Type': 'application/json' },
+    })
+      .then(res => res.json())
+      .then(json => setQRCode(json.qrcode))
+  }
   return (
     <>
-      <div className="content">
-        <Row >
-          <Col md="12">
-            <Card>
-              <CardHeader>
-                <h3 className="title">Product Details</h3>
-              </CardHeader>
-              <CardBody>
-                <Form>
-                
-                  <Row>
-                    <Col className="pr-md-1" md="6">
-                      <FormGroup>
-                        <label>Name</label>
-                        <Input
-                         
-                          placeholder="Name"
-                          type="text"
-                        />
-                      </FormGroup>
-                    </Col>
-                    <Col  md="6">
-                      <FormGroup>
-                        <label>Category</label>
-                        <Input
-                          placeholder="Category"
-                          type="text"
-                        />
-                      </FormGroup>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col className="pr-md-1" md="6">
-                      <FormGroup>
-                        <label className="pr-md-1">Price</label>
-                        <Input
-                          placeholder="Price"
-                          type="text" 
-                        />
-                      </FormGroup>
-                    </Col>
+        
 
-                    <Col  md="6">
-                      <FormGroup>
-                        <label>Serial Number</label>
-                        <Input
-                         
-                          placeholder="Serial Number"
-                          type="text"
-                        />
-                      </FormGroup>
-                    </Col>
-                  </Row>
-                  <Row>
-                   
+        <div className="content">
+          <Row >
+            <Col md="12">
+              <Card>
+                <CardHeader>
+                  <h3 className="title">Product Details</h3>
+                </CardHeader>
+                <CardBody>
+                  <Form onSubmit={submit}>
+
+                    <Row>
+                      <Col className="pr-md-1" md="6">
+                        <FormGroup>
+                          <label>Name</label>
+                          <Input
+
+                            placeholder="Name"
+                            type="text"
+                            value={product.productName}
+                            onChange={e => setProduct({ ...product, productName: e.target.value })}
+                          />
+                        </FormGroup>
+                      </Col>
+                      <Col md="6">
+      
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col className="pr-md-1" md="6">
+                        <FormGroup>
+                          <label className="pr-md-1">Price</label>
+                          <Input
+                            placeholder="Price"
+                            type="number"
+                            value={product.price}
+                            onChange={e => setProduct({ ...product, price: e.target.value })}
+                          />
+                        </FormGroup>
+                      </Col>
+
+                      <Col md="6">
+                        <FormGroup>
+                          <label>Serial Number</label>
+                          <Input
+
+                            placeholder="Serial Number"
+                            type="text" 
+                            value={product.serialCode}
+                            onChange={e => setProduct({ ...product, serialCode: e.target.value })}
+                          />
+                        </FormGroup>
+                      </Col>
+                    </Row>
+                    <Row>
                     <Col md="12">
-                    <label>Qr Code</label>
-                      <FormGroup>
-                        
-                       <img src="https://duckduckgo.com/i/87701897.png" alt="" width="10%" />
-                      </FormGroup>
+                   <label>QR Code</label>
+                     <FormGroup>
+                       
+                      <img src={qrCode} alt=""  />
+                     </FormGroup>
+                   </Col>
+                    <Col xs="4" sm="1">
+                      <Button color="primary" type="submit" block>
+                        Save
+                      </Button>
                     </Col>
+                    <Row>
+                   
+                   
+                 </Row>
                   </Row>
-                  <Row>
-                    <Col md="8">
-                    
-                        <label for="file">Image</label>
-                     
-                        {/* <Input type="file"  /> */}
-                        <Input type="file" id="file" accept="image/*" />
+                  </Form>
+                </CardBody>
+              </Card>
+            </Col>
 
-                      
-                    </Col>
-                  </Row>
-                </Form>
-              </CardBody>
-              <CardFooter className="mx-auto">
-              <Row>
-                <Col xs="12" sm="6">
-                <Button color="primary" type="submit" block>
-                  Save
-                </Button>
-                </Col>
-                <Col xs="12" sm="6">
-                <Button  color="primary" type="submit" block>
-                  Print
-                </Button>
-                </Col>
-              </Row> 
-              </CardFooter>
-            </Card>
-          </Col>
-          
-        </Row>
-      </div>
+          </Row>
+        </div>
     </>
   );
 }
 
 export default AddProduct;
- 

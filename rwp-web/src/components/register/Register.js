@@ -37,6 +37,11 @@ const Register = () => {
                       placeholder="Username"
                       autoComplete="username"
                     />
+                     <Input
+                      type="text"
+                      placeholder="Manufactrer Name"
+                      autoComplete="manufactrername"
+                    />
                   </InputGroup>
                   <InputGroup className="mb-3">
                     <InputGroupAddon addonType="prepend">
