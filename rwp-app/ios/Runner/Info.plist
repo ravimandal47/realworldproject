@@ -41,7 +41,13 @@
 	</array>
 	<key>NSCameraUsageDescription</key>
 	<string>To Scan Bar Code</string>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_dartobservatory._tcp</string>
+	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>To Call APIs</string>
 </dict>
 </plist>

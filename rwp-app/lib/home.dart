@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_and_signup/myscans.dart';
 import 'body.dart';
 
 import 'dart:developer';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
             color: Colors.black,
           ),
           title: new Text(
-            'My Scans',
+            'Home',
             style: TextStyle(color: Colors.black),
           ),
           actions: [
@@ -61,7 +62,7 @@ class MyApp extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => MyApp(),
+                      builder: (context) => MyScans(),
                     ));
                   },
                   child: Container(
@@ -143,9 +144,9 @@ class _QRViewExampleState extends State<QRViewExample> {
     );
   }
 
-  void _navigateToMainPage(String code){
-    Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => Body(code: code)));
+  void _navigateToMainPage(String code) {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => Body(code: code)));
   }
 
   Widget _buildQrView(BuildContext context) {
@@ -177,12 +178,11 @@ class _QRViewExampleState extends State<QRViewExample> {
       setState(() {
         lastResult = result;
         result = scanData;
-        if(result?.code != lastResult?.code){
-           lastResult = null;
-           _navigateToMainPage(scanData.code);
+        if (result?.code != lastResult?.code) {
+          lastResult = null;
+          _navigateToMainPage(scanData.code);
         }
       });
-      
     });
   }
 

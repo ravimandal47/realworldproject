@@ -53,6 +53,9 @@ class SignUp extends StatelessWidget {
           height: 16,
         ),
         TextField(
+          obscureText: true,
+          enableSuggestions: false,
+          autocorrect: false,
           decoration: InputDecoration(
             hintText: 'Password',
             hintStyle: TextStyle(
