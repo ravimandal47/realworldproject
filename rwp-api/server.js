@@ -268,7 +268,7 @@ app.post('/addProducts', (req, res) => {
             callback(error);
             return res.status(400).send('ERROR');
         }
-        QRCode.toDataURL(manufactrerId + serialCode + price, function (err, url) {
+        QRCode.toDataURL(serialCode, function (err, url) {
             return res.status(200).send({'qrcode' : url});
         });
     });
@@ -283,6 +283,22 @@ app.get('/getProducts', (req, res) => {
             return res.status(400).send('ERROR');
         }
         return res.status(200).send(JSON.parse(JSON.stringify(results)));
+    })
+});
+
+app.get('/getProduct/:serialcode', (req, res) => {
+    var serialCode = req.params.serialcode;
+    connection.query('SELECT RETAILERPRODUCTS.Id, RETAILERPRODUCTS.Name as ProductName, RETAILERPRODUCTS.Price, RETAILERPRODUCTS.SerialCode, MANUFACTRER.Name as ManufactrerName FROM RETAILERPRODUCTS INNER JOIN MANUFACTRER  ON RETAILERPRODUCTS.ManufactrerId = MANUFACTRER.Id WHERE RETAILERPRODUCTS.SerialCode = ?',[serialCode], (error, results) => {
+        if(error) {
+            callback(error);
+            return res.status(400).send('ERROR');
+        }
+        if(results.length > 0){
+        return res.status(200).send(JSON.parse(JSON.stringify(results[0])));}
+        else{
+            return res.status(200).send({});
+        }
+
     })
 });
 
